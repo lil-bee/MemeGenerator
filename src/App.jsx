@@ -44,17 +44,19 @@ function App() {
         justifyContent: 'center',
         alignItems: 'center',
         height: '97vh',        
-        backgroundColor: '#A818DA'
+        backgroundColor: '#58216B'
       }}>
       <Box
         sx={{
           backgroundColor: 'whitesmoke',
           width: '550px',
           height: '550px',
-          borderRadius: '10px'
+          borderRadius: '10px',
+          
         }}
       >
-        <Box sx={{ mb: '36px', borderRadius: '10px 10px 0 0'}} display="flex" bgcolor="#58216B" color="white" p={2} alignItems="center">
+        <Box sx={{ mb: '36px', borderRadius: '10px 10px 0 0'}} display="flex" bgcolor="#A818DA" color="white" p={2
+        } alignItems="center">
           <Box p={1} flexGrow={1}>
             {memeLogo}
           </Box>          
@@ -63,7 +65,7 @@ function App() {
           sx={{            
             display: 'flex',
             gap: '17px',   
-            justifyContent: 'center'         
+            justifyContent: 'center',                    
           }}
         >          
           <TextField
@@ -82,17 +84,66 @@ function App() {
 
         <Box
           sx={{
+            my: '15px',
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',            
+            alignItems: 'center',                       
           }}
         >
           <Button
+            variant="text"
+            fullWidth            
+            sx={{
+              width: '437px',
+              backgroundColor: '#A818DA',
+              color: '#FFFFFF',              
+              textTransform: 'none',
+              '&:hover': {
+                backgroundColor: '#58216B' }
+            }}           
             onClick={getMemeImg}
-          >generate</Button>
-          <Typography>{textAtas}</Typography>
-          <Typography>{textBawah}</Typography>
-          {loading ? <Typography>Loading ...</Typography> : <img style={{ width: '200px'}} src={memeimg} alt=""/> }          
+          >Get a new meme image 🖼</Button>
+          <Typography
+            sx={{
+              position: ' absolute',
+              width: ' 80%',
+              textAlign: ' center',
+              left: ' 50%',
+              transform: ' translateX(-50%)',
+              margin: ' 15px 0',
+              padding: ' 0 5px',
+              fontFamily: ' impact, sans-serif',
+              fontSize: '28px',
+              textTransform: ' uppercase',
+              color: ' white',
+              letterSpacing: ' 1px',
+              textShadow: '2px 2px 0 #000,-2px -2px 0 #000,2px -2px 0 #000,-2px 2px 0 #000, 0 2px 0 #000,2px 0 0 #000, 0 -2px 0 #000,-2px 0 0 #000,2px 2px 5px #000,',
+              top: 286
+            }}
+          >            
+            {textAtas}
+          </Typography>
+          <Typography
+            sx={{
+              position: ' absolute',
+              width: ' 80%',
+              textAlign: ' center',
+              left: ' 50%',
+              transform: ' translateX(-50%)',
+              margin: ' 15px 0',
+              padding: ' 0 5px',
+              fontFamily: ' impact, sans-serif',
+              fontSize: '28px',
+              textTransform: ' uppercase',
+              color: ' white',
+              letterSpacing: ' 1px',
+              textShadow: '2px 2px 0 #000,-2px -2px 0 #000,2px -2px 0 #000,-2px 2px 0 #000, 0 2px 0 #000,2px 0 0 #000, 0 -2px 0 #000,-2px 0 0 #000,2px 2px 5px #000,',
+              bottom: 144
+            }}
+          >
+            {textBawah}
+          </Typography>
+          {loading ? <Typography>Loading ...</Typography> : <img style={{ marginTop: '36px', width: '200px'}} src={memeimg} alt=""/> }          
         </Box>
         
         
