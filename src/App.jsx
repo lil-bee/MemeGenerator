@@ -6,47 +6,124 @@ import { Box, Button, TextField, Typography } from '@mui/material'
 
 
 function App() {
+  // const [textAtas, setTextAtas] = useState('')
+  // const [textBawah, setTextBawah] = useState('')
+  // const [memeimg, setMemeimg] = useState('')
+  // const [allMemes, setAllMemes] = useState([])
+  // const [loading, setLoading] = useState(false)
+
+  // const getMemes = async () => {
+  //   setLoading(true)
+  //   try {
+  //     let response = await axios.get('https://api.imgflip.com/get_memes')
+  //     setAllMemes(response.data.data.memes)   
+  //     setLoading(false)   
+  //   } catch(e){
+  //     setLoading(false)   
+  //     console.log(e)
+  //   }
+  // }
+
+  // useEffect( () => {
+  //   getMemes()       
+  // },[])
+
+  // function getMemeImg(){
+  //   const randomNumber = Math.floor(Math.random() * allMemes.length);
+  //   const url = allMemes[randomNumber].url
+  //   setMemeimg(url)
+  // }
+
+  // console.log(allMemes.length)
+
+
   const [textAtas, setTextAtas] = useState('')
   const [textBawah, setTextBawah] = useState('')
-  const [memeimg, setMemeimg] = useState('')
   const [allMemes, setAllMemes] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [memeImg, setMemeImg] = useState('')
+
+  // const getMemes = async () => { 
+  //   try{
+  //     let response = await axios.get('https://api.imgflip.com/get_memes')
+  //       setAllMemes(response.data.data.memes)
+  //   }catch(err){
+  //     console.log(err)
+  //   }
+  // }
+
+  // const getMemeImg = () => {
+  //   const randomNumber = Math.floor(Math.random() * allMemes.length);
+  //   setMemeImg(allMemes[randomNumber].url);
+  // }
+  // useEffect( () => {
+  //   getMemes()
+  // }, [])
+  // console.log(allMemes.length)
+
+  // const getMemes = async () => {
+  //     try{
+  //       let response = await axios.get('https://api.imgflip.com/get_memes')
+  //       setAllMemes(response.data.data.memes)
+  //     } catch(e){
+  //       console.log(e)
+  //     }
+  // }
+  // useEffect(()=>{
+  //   getMemes()
+  // }, [])
+  //   console.log(allMemes.length)
+
+  //   const getMemeUrl = () => {
+  //     const randomNumber = Math.floor(Math.random() * allMemes.length)
+  //     setMemeImg(allMemes[randomNumber].url)
+  //   }
+
+  // const getMemes = async () => {
+  //   try {
+  //     let response = await axios.get('https://api.imgflip.com/get_memes')      
+  //     return setAllMemes(response.data.data.memes)   
+  //   } catch(e){
+  //     console.log(e)
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   getMemes()
+  // }, [])
+
+  
 
   const getMemes = async () => {
-    setLoading(true)
-    try {
+    try{
       let response = await axios.get('https://api.imgflip.com/get_memes')
-      setAllMemes(response.data.data.memes)   
-      setLoading(false)   
+      return setAllMemes(response.data.data.memes)
     } catch(e){
-      setLoading(false)   
-      console.log(e)
+      console.loh(e)
     }
   }
 
-  useEffect( () => {
-    getMemes()       
-  },[])
+  useEffect(() => {
+    getMemes()
+  }, [])
 
-  function getMemeImg(){
-    const randomNumber = Math.floor(Math.random() * allMemes.length);
-    const url = allMemes[randomNumber].url
-    setMemeimg(url)
+  const getMemesImage = () => {
+    const randomNum = Math.floor(Math.random() * allMemes.length)
+    setMemeImg(allMemes[randomNum].url)
   }
+  
 
-  console.log(allMemes.length)
-
-  return (
-    <div
+  return (    
+      <div
       className="App"
       style={{
+        margin: 0,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '97vh',        
+        height: '100vh',        
         backgroundColor: '#58216B'
       }}>
-      <Box
+      <Box        
         sx={{
           backgroundColor: 'whitesmoke',
           width: '550px',
@@ -57,8 +134,10 @@ function App() {
       >
         <Box sx={{ mb: '36px', borderRadius: '10px 10px 0 0'}} display="flex" bgcolor="#A818DA" color="white" p={2
         } alignItems="center">
-          <Box p={1} flexGrow={1}>
-            {memeLogo}
+          <Box sx={{display: 'flex', flexDirection: 'row', gap: '7px'}} p={1} flexGrow={1}>
+           <img src={memeLogo} alt=""/>
+           <Typography>Meme Generator</Typography>        
+
           </Box>          
         </Box>
         <Box
@@ -72,13 +151,13 @@ function App() {
             id="text-atas"
             label="text atas"
             variant="outlined"
-            onChange={event => {setTextAtas(event.target.value)}}
+            onChange={e => (setTextAtas(e.target.value))}
           />
           <TextField
             id="text-bawah"
             label="text bawah"
             variant="outlined"
-            onChange={event => {setTextBawah(event.target.value)}}
+            onChange = {e => (setTextBawah(e.target.value))}
           />
         </Box>
 
@@ -91,6 +170,7 @@ function App() {
           }}
         >
           <Button
+            onClick={getMemesImage}
             variant="text"
             fullWidth            
             sx={{
@@ -101,7 +181,7 @@ function App() {
               '&:hover': {
                 backgroundColor: '#58216B' }
             }}           
-            onClick={getMemeImg}
+            
           >Get a new meme image 🖼</Button>
           <Typography
             sx={{
@@ -117,11 +197,11 @@ function App() {
               textTransform: ' uppercase',
               color: ' white',
               letterSpacing: ' 1px',
-              textShadow: '2px 2px 0 #000,-2px -2px 0 #000,2px -2px 0 #000,-2px 2px 0 #000, 0 2px 0 #000,2px 0 0 #000, 0 -2px 0 #000,-2px 0 0 #000,2px 2px 5px #000,',
+              textShadow: '2px 2px 0 #000',
               top: 286
             }}
-          >            
-            {textAtas}
+          >        
+            {textAtas}  
           </Typography>
           <Typography
             sx={{
@@ -137,18 +217,21 @@ function App() {
               textTransform: ' uppercase',
               color: ' white',
               letterSpacing: ' 1px',
-              textShadow: '2px 2px 0 #000,-2px -2px 0 #000,2px -2px 0 #000,-2px 2px 0 #000, 0 2px 0 #000,2px 0 0 #000, 0 -2px 0 #000,-2px 0 0 #000,2px 2px 5px #000,',
+              textShadow: '2px 2px 0 #000',
               bottom: 144
             }}
           >
-            {textBawah}
+            {textBawah}            
           </Typography>
-          {loading ? <Typography>Loading ...</Typography> : <img style={{ marginTop: '36px', width: '200px'}} src={memeimg} alt=""/> }          
+          {/* {loading ? <Typography>Loading ...</Typography> : <img style={{ marginTop: '36px', width: '200px'}} src='' alt=""/> }  */}
+          <img style={{ marginTop: '36px', width: '200px'}} src={memeImg} alt=""/>         
         </Box>
         
         
       </Box>
     </div>
+    
+    
   )
 }
 
