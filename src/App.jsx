@@ -6,111 +6,24 @@ import { Box, Button, TextField, Typography } from '@mui/material'
 
 
 function App() {
-  // const [textAtas, setTextAtas] = useState('')
-  // const [textBawah, setTextBawah] = useState('')
-  // const [memeimg, setMemeimg] = useState('')
-  // const [allMemes, setAllMemes] = useState([])
-  // const [loading, setLoading] = useState(false)
-
-  // const getMemes = async () => {
-  //   setLoading(true)
-  //   try {
-  //     let response = await axios.get('https://api.imgflip.com/get_memes')
-  //     setAllMemes(response.data.data.memes)   
-  //     setLoading(false)   
-  //   } catch(e){
-  //     setLoading(false)   
-  //     console.log(e)
-  //   }
-  // }
-
-  // useEffect( () => {
-  //   getMemes()       
-  // },[])
-
-  // function getMemeImg(){
-  //   const randomNumber = Math.floor(Math.random() * allMemes.length);
-  //   const url = allMemes[randomNumber].url
-  //   setMemeimg(url)
-  // }
-
-  // console.log(allMemes.length)
-
-
   const [textAtas, setTextAtas] = useState('')
   const [textBawah, setTextBawah] = useState('')
   const [allMemes, setAllMemes] = useState([])
   const [memeImg, setMemeImg] = useState('')
 
-  // const getMemes = async () => { 
-  //   try{
-  //     let response = await axios.get('https://api.imgflip.com/get_memes')
-  //       setAllMemes(response.data.data.memes)
-  //   }catch(err){
-  //     console.log(err)
-  //   }
-  // }
-
-  // const getMemeImg = () => {
-  //   const randomNumber = Math.floor(Math.random() * allMemes.length);
-  //   setMemeImg(allMemes[randomNumber].url);
-  // }
-  // useEffect( () => {
-  //   getMemes()
-  // }, [])
-  // console.log(allMemes.length)
-
-  // const getMemes = async () => {
-  //     try{
-  //       let response = await axios.get('https://api.imgflip.com/get_memes')
-  //       setAllMemes(response.data.data.memes)
-  //     } catch(e){
-  //       console.log(e)
-  //     }
-  // }
-  // useEffect(()=>{
-  //   getMemes()
-  // }, [])
-  //   console.log(allMemes.length)
-
-  //   const getMemeUrl = () => {
-  //     const randomNumber = Math.floor(Math.random() * allMemes.length)
-  //     setMemeImg(allMemes[randomNumber].url)
-  //   }
-
-  // const getMemes = async () => {
-  //   try {
-  //     let response = await axios.get('https://api.imgflip.com/get_memes')      
-  //     return setAllMemes(response.data.data.memes)   
-  //   } catch(e){
-  //     console.log(e)
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   getMemes()
-  // }, [])
-
-  
-
   const getMemes = async () => {
-    try{
-      let response = await axios.get('https://api.imgflip.com/get_memes')
-      return setAllMemes(response.data.data.memes)
-    } catch(e){
-      console.loh(e)
-    }
+    let response = await axios.get('https://api.imgflip.com/get_memes')
+    return setAllMemes(response.data.data.memes)
   }
 
   useEffect(() => {
     getMemes()
   }, [])
 
-  const getMemesImage = () => {
+  const getMemesUrl = () => {
     const randomNum = Math.floor(Math.random() * allMemes.length)
     setMemeImg(allMemes[randomNum].url)
-  }
-  
+  }  
 
   return (    
       <div
@@ -170,7 +83,7 @@ function App() {
           }}
         >
           <Button
-            onClick={getMemesImage}
+            onClick={getMemesUrl}
             variant="text"
             fullWidth            
             sx={{
@@ -225,9 +138,7 @@ function App() {
           </Typography>
           {/* {loading ? <Typography>Loading ...</Typography> : <img style={{ marginTop: '36px', width: '200px'}} src='' alt=""/> }  */}
           <img style={{ marginTop: '36px', width: '200px'}} src={memeImg} alt=""/>         
-        </Box>
-        
-        
+        </Box>        
       </Box>
     </div>
     
